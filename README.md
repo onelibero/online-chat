@@ -11,7 +11,8 @@ springboot+vue聊天室
  username varchar(20) not null unique comment '用户账号',
  password varchar(20) not null  comment '用户密码',
  avatar varchar(50) not null comment '用户头像',
- create_time date comment '创建日期'
+ create_time date comment '创建日期',
+ salt char(4) comment '盐值'
 )COMMENT '用户表';
 
 create table user_detail(
@@ -39,3 +40,11 @@ begin
 		 values (new.userid);
 end;
 </code>
+# 二、登录注册实现
+## 2.注册
+### 2.1 头像（文件上传）
+前端可以给出默认头像以及头像地址，这里只阐述后端获取用户上传，这里的图片信息都是存储在存储通中的，具体实现类看TXCloudUtils和HuaweiObs两个工具类，
+本项目是用的腾讯云（华为云步骤大差不差）
+### 2.2 基本信息
+上传图片后会获取图片的url，带着基本信息进行简单查询就行，注意重名检测，就是插入前写一个根据name查
+**注：这里的返回值类型会返回null，**
