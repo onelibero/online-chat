@@ -92,6 +92,68 @@
             <version>2.2.5.RELEASE</version>
             <optional>true</optional>
         </dependency>
+        <!-- 腾讯云存储通-->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.24</version>
+        </dependency>
+        <!-- 华为云存储通-->
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>esdk-obs-java</artifactId>
+            <version>3.20.6.1</version>
+        </dependency>
+        <!--必须制定okhttp3的最新版本号，否则会出现java.lang.NoSuchMethodError: okhttp3.RequestBody.create-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.3</version>
+        </dependency>
+        <!--必须指定与okhttp相匹配的okio的版本，否则会出现okio和okhttp的包冲突问题java.lang.NoSuchMethodError: kotlin-->
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <!-- hutool java开发工具类-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.10</version> <!-- 请根据实际情况使用最新版本 -->
+        </dependency>
+        <!-- fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.78</version> <!-- 请根据实际情况使用最新版本 -->
+        </dependency>
+        <!-- Apache Commons IO 库中的一个类，用于简化处理输入输出（IO）操作的任务-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version> <!-- 请根据实际情况使用最新版本 -->
+        </dependency>
+        <!--集成redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>2.1.7.RELEASE</version>
+        </dependency>
+        <!--    redis连接池lettuce客户端    -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <!--序列化-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>

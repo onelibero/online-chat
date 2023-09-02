@@ -4,10 +4,10 @@ package cdu.gu.onlinechat.config;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@AutoConfigureAfter(WebMvcConfigurer.class)
 public class CROSConfig implements WebMvcConfigurer {
 
     /**
@@ -23,6 +23,7 @@ public class CROSConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600);
     }
+
 
 
 }
