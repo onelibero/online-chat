@@ -1,5 +1,6 @@
 package cdu.gu.onlinechat.service.impl;
 
+import cdu.gu.onlinechat.entity.LoginInfoDo;
 import cdu.gu.onlinechat.entity.User;
 import cdu.gu.onlinechat.mapper.UserMapper;
 import cdu.gu.onlinechat.service.UserService;
@@ -71,5 +72,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByName(String username) {
         return userMapper.findUserById(userMapper.findUserByName(username));
+    }
+
+    @Override
+    public void addUserLoginInfo(LoginInfoDo loginInfoDo) {
+        
     }
 }
