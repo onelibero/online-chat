@@ -23,8 +23,7 @@ public class ChatController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService; //用户service类
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate; //消息模板
+
     @Autowired
     private ParticipantRepository participantRepository; //在线用户存储
 
@@ -33,35 +32,34 @@ public class ChatController {
     private static final String SUBSCRIBE_MESSAGE_URI = "/topic/chat/message"; //订阅接收消息地址
 
     private static final String IMAGE_PREFIX = "/upload/";  //服务器储存上传图片地址的前缀
+//
+//    /**
+//     * 进入群聊
+//     * @param user
+//     * @return
+//     */
+//    @PostMapping("/qun")
+//    public String loginIntoChatRoom(User user){
+//        //登录时间
+//        user.setLoginDate(new Date());
+//        user.setPassword(null); //设空防止泄露
+//        //用于通过websocket向客户端发送消息的操作
+//        messagingTemplate.convertAndSend(SUBSCRIBE_LOGIN_URI, user);
+//        logger.info(user.getLoginDate() + ", " + user.getName() + " login.");
+//        return "chatroom";
+//    }
 
-    /**
-     * 进入群聊
-     * @param user
-     * @return
-     */
-    @PostMapping("/qun")
-    public String loginIntoChatRoom(User user){
-        //登录时间
-        user.setLoginDate(new Date());
-        user.setPassword(null); //设空防止泄露
-        //用于通过websocket向客户端发送消息的操作
-        messagingTemplate.convertAndSend(SUBSCRIBE_LOGIN_URI, user);
-        logger.info(user.getLoginDate() + ", " + user.getName() + " login.");
-        return "chatroom";
-    }
-
-    /**
-     * 接收文本消息
-     * @param message
-     */
-    @MessageMapping("/sendmessgae")
-    public void receiveMessage(Message message){
-        message.setSendDate(new Date());
-        message.setMessageType("text");
-        logger.info(message.getSendDate()+"."+message.getUserName()+"发送了一条消息:"+message.getContent());
-
-        messagingTemplate.convertAndSend(SUBSCRIBE_MESSAGE_URI,message);
-    }
+//    /**
+//     * 接收文本消息
+//     * @param message
+//     */
+//    @MessageMapping("/sendmessgae")
+//    public void receiveMessage(Message message){
+//        message.setSendDate(new Date());
+//        message.setMessageType("text");
+//        logger.info(message.getSendDate()+"."+message.getUserName()+"发送了一条消息:"+message.getContent());
+//        messagingTemplate.convertAndSend(SUBSCRIBE_MESSAGE_URI,message);
+//    }
 
     @PostMapping("/upload")
 

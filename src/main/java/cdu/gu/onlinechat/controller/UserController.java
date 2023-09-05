@@ -43,6 +43,8 @@ public class UserController {
     }
     @PostMapping("/login")
     public RUtils Login(@RequestParam("username")String username,@RequestParam("password")String password){
-      return userService.login(username,password);
+        System.out.println(username);
+        System.out.println(password);
+        return userService.login(username,password);
     }
 }

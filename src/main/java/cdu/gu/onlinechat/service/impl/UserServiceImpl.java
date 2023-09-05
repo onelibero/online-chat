@@ -29,31 +29,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public RUtils login(String username, String password) {
-        int id = userMapper.findUserByName(username);
-        System.out.println(id);
-        User user = userMapper.findUserById(id);
-        if (user != null ) {
-            System.out.println(user);
+        Integer id = userMapper.findUserByName(username);
+        if (id != null){
+            User user = userMapper.findUserById(id);
             System.out.println(user.getSalt()+"密码"+user.getPassword());
             if (md5Utils.check(user.getPassword(),password,user.getSalt()))
                 return RUtils.ok().put("用户",user);
             else
                 return RUtils.error("密码错误");
-        }
-        return RUtils.error("账号不存在");
+            }
+        else
+            return RUtils.error("账号不存在");
+
     }
 
     @Override
     public int register(String name, String username, String password,String avatar) {
-
-        if (userMapper.findUserByName(username)!= null){
+        if (userMapper.findUserByName(username) == null){
         //生成userid
         char charr[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
         StringBuilder userid = new StringBuilder();
         String salt = new String();
         Random r = new Random();
         for (int x = 0; x < 8; ++x) {
-//            userid.append(charr[r.nextInt(charr.length)]);
+            userid.append(charr[r.nextInt(charr.length)]);
         }
         System.out.println(userid);
         //生成盐值
