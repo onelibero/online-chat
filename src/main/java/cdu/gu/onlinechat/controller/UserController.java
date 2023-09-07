@@ -5,6 +5,7 @@ import cdu.gu.onlinechat.service.UserService;
 import cdu.gu.onlinechat.utils.HuaweiObs;
 import cdu.gu.onlinechat.utils.RUtils;
 import cdu.gu.onlinechat.utils.TXCloudUtils;
+import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,8 +44,6 @@ public class UserController {
     }
     @PostMapping("/login")
     public RUtils Login(@RequestParam("username")String username,@RequestParam("password")String password){
-        System.out.println(username);
-        System.out.println(password);
         return userService.login(username,password);
     }
 }

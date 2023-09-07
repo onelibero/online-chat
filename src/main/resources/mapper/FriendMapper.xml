@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdu.gu.onlinechat.mapper.FriendMapper">
+    <resultMap id="FriendList" type="cdu.gu.onlinechat.entity.User">
+        <id property="id" column="id" />
+        <result property="userid" column="userid" />
+        <result property="avatar" column="avatar" />
+        <result property="name" column="name" />
+        <collection property="friendlist" column="userid" ofType="cdu.gu.onlinechat.entity.Friend" javaType="ArrayList" select="getFriendList">
+        </collection>
+    </resultMap>
+    <select id="getFriendByUserid" resultType="cdu.gu.onlinechat.entity.User">
+        select  user.id,
+                user.userid,
+                user.avatar,
+                user.name
+        from user
+        where user.userid = #{userid}
+    </select>
+    <select id="getFriendList" resultType="int">
+        select  friend.friend_id
+        from friend
+        where friend.userid = #{id}
+    </select>
+
+
+</mapper>

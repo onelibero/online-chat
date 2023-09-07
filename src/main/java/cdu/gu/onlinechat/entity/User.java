@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +26,5 @@ public class User {
     private String email;
     private String phone;
     //关于聊天的
-    private Date loginDate;
-    private Date logoutDate;
+    private List<Integer> friendlist;
 }

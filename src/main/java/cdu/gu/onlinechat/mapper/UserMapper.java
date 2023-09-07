@@ -13,4 +13,6 @@ public interface UserMapper {
     int register(String userid, String name, String username, String password, String avatar, Date create_time,String salt);
 
     User findUserById(int id);
+
+    User login(String name);
 }

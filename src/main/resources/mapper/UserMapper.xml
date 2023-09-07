@@ -19,4 +19,10 @@
         from user
         where id = #{id}
     </select>
+    <select id="login" resultType="cdu.gu.onlinechat.entity.User">
+        select username,password
+        from user
+        where name = #{name}
+    </select>
+
 </mapper>
