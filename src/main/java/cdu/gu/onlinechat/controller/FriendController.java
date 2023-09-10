@@ -1,5 +1,6 @@
 package cdu.gu.onlinechat.controller;
 
+import cdu.gu.onlinechat.entity.User;
 import cdu.gu.onlinechat.service.FriendService;
 import cdu.gu.onlinechat.utils.RUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,10 @@ public class FriendController {
     private FriendService friendService;
     @GetMapping("/getfriend")
     public RUtils getFriend(@RequestParam("userid") String userid){
-        return RUtils.ok().put("user",friendService.getFriend(userid));
+        User user = friendService.getFriend(userid);
+        if(user != null)
+        return RUtils.ok().put("user",user);
+        else return RUtils.error("用户不存在");
     }
 
     @PostMapping

@@ -4,6 +4,32 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cdu.gu.onlinechat.mapper.FriendMapper">
+    <insert id="requestAddFriend">
+        insert into friendrequest(userid,friend_id,status,createTime)
+        values (#{userid},#{friend_id},#{status},#{createTime})
+    </insert>
+    <update id="isagreeFriend">
+        update friendrequest set
+        status = #{status}
+        where userid = #{userid} and friend_id = #{friend_id} or userid = #{friend_id} and friend_id = #{userid}
+    </update>
+    <delete id="deleteRequest">
+        delete from friendrequest
+        where userid = #{userid} and friend_id = #{friend_id} or userid = #{friend_id} and friend_id = #{userid}
+    </delete>
+    <select id="getRequest" resultType="cdu.gu.onlinechat.entity.User">
+
+    </select>
+    <insert id="addFriend">
+        insert into friend(userid,friend_id)
+        values (#{userid},#{friend_id})
+    </insert>
+
+    <delete id="deleteFriend">
+        delete from friend
+        where userid = #{userid} and friend_id = #{friend_id} or userid = #{friend_id} and friend_id = #{userid}
+    </delete>
+
     <resultMap id="FriendList" type="cdu.gu.onlinechat.entity.User">
         <id property="id" column="id" />
         <result property="userid" column="userid" />
@@ -14,9 +40,9 @@
     </resultMap>
     <select id="getFriendByUserid" resultType="cdu.gu.onlinechat.entity.User">
         select  user.id,
-                user.userid,
-                user.avatar,
-                user.name
+        user.userid,
+        user.avatar,
+        user.name
         from user
         where user.userid = #{userid}
     </select>
@@ -25,6 +51,5 @@
         from friend
         where friend.userid = #{id}
     </select>
-
 
 </mapper>
