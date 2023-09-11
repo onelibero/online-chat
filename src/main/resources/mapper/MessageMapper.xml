@@ -6,4 +6,17 @@
 <mapper namespace="cdu.gu.onlinechat.mapper.MessageMapper">
 
 
+    <insert id="addMessagequn">
+        insert into allmessage(name,message,create_time)
+        values (#{name},#{message},#{create_time})
+    </insert>
+    <insert id="addMessage">
+        insert into primessage(fromid,toid,message,create_time)
+        values (#{fromid},#{toid},#{message},#{create_time})
+    </insert>
+    <delete id="deleteMessagequn">
+        delete from allmessage
+        where name = #{name} and message = #{message}
+    </delete>
+    <delete id="deleteMessage"></delete>
 </mapper>
