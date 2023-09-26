@@ -21,14 +21,13 @@ public interface FriendMapper {
     int requestAddFriend(String userid, String friend_id, Date time);
     int isagreeFriend(String userid,String friend_id,byte status);
     int deleteRequest(String userid,String friend_id);
-    List<User> getRequest(String userid,byte status);
+    List<String> getRequest(String userid);
     /**
      * 朋友表
      * @param userid
      * @param friend_id
      * @return
      */
-    int addFriend(String userid,String friend_id);
     int deleteFriend(String userid,String friend_id);
     User getFriendByUserid(String userid);
 }

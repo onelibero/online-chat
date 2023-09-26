@@ -15,4 +15,5 @@ public interface UserMapper {
     User findUserById(int id);
 
     User login(String name);
+    Integer findUserByUserId(String userid);
 }
