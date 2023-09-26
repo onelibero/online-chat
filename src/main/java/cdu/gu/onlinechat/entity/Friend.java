@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Friend {
     private int id;
-    private Integer userid;
-    private Integer friend_id;
+    private String userid;
+    private String friend_id;
+    private Byte status;
 }
