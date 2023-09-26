@@ -2,10 +2,13 @@ package cdu.gu.onlinechat.service.impl;
 
 import cdu.gu.onlinechat.entity.User;
 import cdu.gu.onlinechat.mapper.FriendMapper;
+import cdu.gu.onlinechat.mapper.UserMapper;
 import cdu.gu.onlinechat.service.FriendService;
+import cdu.gu.onlinechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,13 +17,15 @@ import java.util.List;
 public class FriendServiceImpl implements FriendService {
     @Autowired
     private FriendMapper friendMapper;
+    @Autowired
+    private UserService userService;
     @Override
     public User getFriend(String userid) {
         return friendMapper.getFriendByUserid(userid);
     }
 
     @Override
-    public Integer requestAddFriend(String userid, String friend_id) {
+    public Integer addFriend(String userid, String friend_id) {
         Date date = new Date();
         return friendMapper.requestAddFriend(userid,friend_id,date);
     }
@@ -43,21 +48,21 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     public List<User> getRequest(String userid) {
-        return null;
+        List<String> requestList = friendMapper.getRequest(userid);
+        List<User> userList = new ArrayList<>();
+        for(String id: requestList){
+           userList.add(userService.findUserByUserId(id));
+        }
+        return userList;
     }
 
     @Override
-    public int addFriend(String userid, String friend_id) {
-        return 0;
-    }
-
-    @Override
-    public int deleteFriend(String userid, String friend_id) {
-        return 0;
+    public Integer deleteFriend(String userid, String friend_id) {
+        return friendMapper.deleteFriend(userid,friend_id);
     }
 
     @Override
     public User getFriendByUserid(String userid) {
-        return null;
+        return friendMapper.getFriendByUserid(userid);
     }
 }

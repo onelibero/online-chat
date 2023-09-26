@@ -9,6 +9,6 @@ public interface UserService {
     RUtils login(String username, String password);
     int register(String name,String username,String password,String avatar);
     User findUserByName(String username);
-
+    User findUserByUserId(String userid);
 
 }
