@@ -17,24 +17,17 @@
         delete from friendrequest
         where userid = #{userid} and friend_id = #{friend_id} or userid = #{friend_id} and friend_id = #{userid}
     </delete>
-    <resultMap id="getRequestList" type="">
-        <collection property="requestlist" column="firend_id" ofType="cdu.gu.onlinechat.entity.Friend" javaType="ArrayList" select="getrequest">
 
-        </collection>
-    </resultMap>
-    <select id="requestlist" resultType="int">
-        select  friend.friend_id
+    <select id="getRequest" resultType="java.lang.String">
+        select friend.userid,
+        friend.status
         from friend
-        where friend.userid = #{id}
-    </select>
-    <select id="getRequest" resultType="cdu.gu.onlinechat.entity.User" resultMap="getRequestList">
-        
+        where friend.friend_id = #{userid}
     </select>
 
-    <insert id="addFriend">
-        insert into friend(userid,friend_id)
-        values (#{userid},#{friend_id})
-    </insert>
+
+
+
 
     <delete id="deleteFriend">
         delete from friend
@@ -62,6 +55,7 @@
         from friend
         where friend.userid = #{id}
     </select>
- 
+
+
 
 </mapper>

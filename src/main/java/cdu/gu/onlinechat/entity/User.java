@@ -27,4 +27,5 @@ public class User {
     private String phone;
     //关于聊天的
     private List<Integer> friendlist;
+    private List<String> friendrequest;
 }

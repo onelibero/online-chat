@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-    username: ********************
-    password: ********************
+    username: root
+    password: 179220
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5
@@ -14,7 +14,7 @@ spring:
   # redis配置以及连接池
   data:
     redis:
-      host: ********************
+      host: localhost
       port: 6379
       # 连接超时时间
       timeout: 10000ms
@@ -51,17 +51,17 @@ avatar:
 
 hwyun:
   obs:
-    accessKey: ********************
-    securityKey: ********************
-    bucketName: ********************
-    endPoint: ********************
+    accessKey: NJKWNPPTWCRZVM82KDEB
+    securityKey: UblF4u1zWJpd8LhuzPVMfYMteq84jwDSLblPIugw
+    bucketName: online-chat0
+    endPoint: obs.cn-east-3.myhuaweicloud.com
     prifix: /photo
-    path: ********************  #域名，在域名后或目录前加/
+    path: online-chat.obs.cn-east-3.myhuaweicloud.com  #域名，在域名后或目录前加/
 txyun:
   obs:
-    secretId: ********************
-    secretKey: ********************
-    region: ********************
-    bucketName: ********************
-    url: ********************
+    secretId: AKID62vc7SgvMXdjicIk4SsEUhiUTM2Vjvxl
+    secretKey: pV3Qk2VnrkPuKh7ORPI1WwwrW6Wjuypd
+    region: ap-chengdu
+    bucketName: emos-1317476475
+    url: https://emos-1317476475.cos.ap-chengdu.myqcloud.com
     prefix: /photo/

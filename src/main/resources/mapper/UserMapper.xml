@@ -15,7 +15,7 @@
         where username = #{username}
     </select>
     <select id="findUserById" resultType="cdu.gu.onlinechat.entity.User">
-        select userid,name,username,password,avatar,create_time,salt
+        select userid,name,username,avatar,create_time
         from user
         where id = #{id}
     </select>
@@ -23,6 +23,11 @@
         select username,password
         from user
         where name = #{name}
+    </select>
+    <select id="findUserByUserId" resultType="integer">
+        select id
+        from user
+        where userid = #{userid}
     </select>
 
 </mapper>
