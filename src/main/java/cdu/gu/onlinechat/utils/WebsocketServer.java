@@ -49,7 +49,7 @@ public class WebsocketServer {
     }
 
     /**
-     * 接收来自客户端的消息
+     * 接收来自客户端的消息，根据是否有toid来判断群发和私发
      * @param message
      * @throws IOException
      */
@@ -61,10 +61,10 @@ public class WebsocketServer {
 
         msg.setSendDate(new SimpleDateFormat("HH:mm:ss").format(startTime));
         System.out.println(msg);
-        if (StringUtils.isEmpty(msg.getTo())){
+        if (StringUtils.isEmpty(msg.getToid())){
             sendAllMessage(JSON.toJSONString(message));
         }else {
-            Session session = sessionMap.get(msg.getTo());
+            Session session = sessionMap.get(msg.getToid());
             sendMessage(message,session);
         }
     }
@@ -74,6 +74,10 @@ public class WebsocketServer {
         error.printStackTrace();
     }
 
+    /**
+     * 用来统计登录人的信息
+     * @return
+     */
     private String setUserList(){
         ArrayList<String> list = new ArrayList<>();
         for (String key:sessionMap.keySet()){
@@ -84,10 +88,21 @@ public class WebsocketServer {
         return JSON.toJSONString(message);
     }
 
+    /**
+     * 给对于session发送
+     * @param message
+     * @param toSession
+     * @throws IOException
+     */
     private void sendMessage(String message,Session toSession) throws IOException {
         toSession.getBasicRemote().sendText(message);
     }
 
+    /**
+     * 遍历所有session，给所有session对象发送
+     * @param message
+     * @throws IOException
+     */
     private void sendAllMessage(String message) throws IOException {
         for (Session session : sessionMap.values()){
             session.getBasicRemote().sendText(message);
