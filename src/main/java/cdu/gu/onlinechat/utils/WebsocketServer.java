@@ -1,8 +1,10 @@
 package cdu.gu.onlinechat.utils;
 
 import cdu.gu.onlinechat.entity.Message;
+import cdu.gu.onlinechat.service.MessageService;
 import com.alibaba.fastjson.JSON;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
@@ -20,6 +22,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @ServerEndpoint("/socket/{username}")
 public class WebsocketServer {
+    @Autowired
+    public MessageService messageService;
     //存储当前对象
     public static final Map<String, Session> sessionMap = new ConcurrentHashMap<>();
     //建立连接
@@ -58,13 +62,14 @@ public class WebsocketServer {
         //解析消息为java对象
         Message msg = JSON.parseObject(message,Message.class);
         Date startTime = new Date(System.currentTimeMillis());
-
         msg.setSendDate(new SimpleDateFormat("HH:mm:ss").format(startTime));
         System.out.println(msg);
         if (StringUtils.isEmpty(msg.getToid())){
+            messageService.AddMessage(msg.getFromid(),msg.getMessgae());
             sendAllMessage(JSON.toJSONString(message));
         }else {
             Session session = sessionMap.get(msg.getToid());
+            messageService.PreAddMessage(msg.getFromid(), msg.getToid(),msg.getMessgae());
             sendMessage(message,session);
         }
     }
