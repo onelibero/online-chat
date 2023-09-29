@@ -18,18 +18,6 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    /**
-     * 添加群消息
-     * @param name
-     * @param message
-     * @return
-     */
-    @PostMapping("addAll")
-    public RUtils AddAll(@RequestParam("name")String name,@RequestParam("message")String message){
-        if (messageService.AddMessage(name, message) == 1)
-            return RUtils.ok();
-        else return RUtils.error();
-    }
 
     /**
      * 撤回
@@ -45,16 +33,14 @@ public class MessageController {
     }
 
     /**
-     * 添加私有信息
-     * @param message
+     * 撤回私有消息
      * @return
      */
-    @PostMapping
-    public RUtils AddOne(@RequestBody Message message){
-        if (messageService.PreAddMessage(message.getFromid(),message.getToid(),message.getMessgae()) == 1)
+    @PostMapping("/delpre")
+    public RUtils DelPre(@RequestBody Message msg){
+        if (messageService.PreDelMessage(msg.getFromid(), msg.getToid(), msg.getSendDate()) == 1)
             return RUtils.ok();
-        else
-            return RUtils.error();
+        else return RUtils.error();
     }
 
 
