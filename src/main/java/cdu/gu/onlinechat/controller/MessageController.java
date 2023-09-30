@@ -43,5 +43,17 @@ public class MessageController {
         else return RUtils.error();
     }
 
+    /**
+     * 清空消息
+     * @param msg
+     * @return
+     */
+    @PostMapping("/delPreAll")
+    public RUtils DelPreAll(@RequestBody Message msg){
+        if (messageService.PreClearMessage(msg.getFromid(), msg.getToid()) == 1)
+            return RUtils.ok();
+        else return RUtils.error();
+    }
+
 
 }
