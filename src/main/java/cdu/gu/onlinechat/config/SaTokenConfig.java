@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * @author Zch
- * @data 2023/5/27
- **/
+
 @Configuration
 public class SaTokenConfig implements WebMvcConfigurer {
 
