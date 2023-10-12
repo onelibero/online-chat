@@ -3,7 +3,9 @@ package cdu.gu.onlinechat.utils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
-
+/**
+ * 利用md5算法进行相关操作
+ */
 @Component
 public class MD5Utils {
 
